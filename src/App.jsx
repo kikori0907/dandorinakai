@@ -208,14 +208,6 @@ const DandoriOpening = () => {
           }}>
             冒険の書
           </h1>
-          <div style={{
-            color: '#fff',
-            fontSize: 'clamp(20px, 4vw, 40px)',
-            letterSpacing: '0.15em',
-            margin: 0
-          }}>
-            ：
-          </div>
           <h2 style={{
             color: '#fff',
             fontSize: 'clamp(28px, 5.5vw, 56px)',
