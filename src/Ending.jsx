@@ -178,14 +178,14 @@ const Ending = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: '"PixelMplus12", "DotGothic16", monospace',
+        fontFamily: '"DotGothic16", monospace',
         cursor: 'pointer'
       }}
         onClick={handleStart}
       >
         <p style={{
           color: '#888',
-          fontSize: 'clamp(18px, 3vw, 32px)',
+          fontSize: 'clamp(28px, 5vw, 48px)',
           animation: 'blink 1.2s infinite'
         }}>
           ▶ PRESS START
@@ -208,7 +208,7 @@ const Ending = () => {
       height: '100vh',
       backgroundColor: '#000',
       display: 'flex',
-      fontFamily: '"PixelMplus12", "DotGothic16", monospace',
+      fontFamily: '"DotGothic16", monospace',
       overflow: 'hidden'
     }}>
 
@@ -255,7 +255,7 @@ const Ending = () => {
           }}>
             <p style={{
               color: '#fff',
-              fontSize: 'clamp(36px, 6vw, 72px)',
+              fontSize: 'clamp(48px, 8vw, 96px)',
               letterSpacing: '0.3em',
               lineHeight: 2
             }}>
@@ -287,7 +287,7 @@ const Ending = () => {
                 }}>
                   <p style={{
                     color: '#fff',
-                    fontSize: 'clamp(24px, 3.75vw, 48px)',
+                    fontSize: 'clamp(24px, 3vw, 44px)',
                     letterSpacing: '0.15em',
                     marginBottom: '8px',
                     whiteSpace: 'pre-wrap',
@@ -298,7 +298,7 @@ const Ending = () => {
                   {col.names.map((name, i) => (
                     <p key={i} style={{
                       color: '#fff',
-                      fontSize: 'clamp(27px, 4.5vw, 54px)',
+                      fontSize: 'clamp(28px, 3.5vw, 52px)',
                       letterSpacing: '0.1em'
                     }}>
                       {name}
@@ -310,7 +310,7 @@ const Ending = () => {
               <>
                 <p style={{
                   color: '#fff',
-                  fontSize: 'clamp(24px, 3.75vw, 48px)',
+                  fontSize: 'clamp(32px, 5vw, 64px)',
                   letterSpacing: '0.2em',
                   marginBottom: '12px'
                 }}>
@@ -319,7 +319,7 @@ const Ending = () => {
                 {staffList[currentGroup].names.map((name, i) => (
                   <p key={i} style={{
                     color: '#fff',
-                    fontSize: 'clamp(27px, 4.5vw, 54px)',
+                    fontSize: 'clamp(36px, 6vw, 72px)',
                     letterSpacing: '0.15em'
                   }}>
                     {name}
@@ -342,9 +342,8 @@ const Ending = () => {
           height: '100vh',
           backgroundColor: '#000',
           display: 'flex',
-          alignItems: 'flex-end',
+          alignItems: 'center',
           justifyContent: 'center',
-          paddingBottom: '10vh',
           opacity: fadeIn ? 1 : 0,
           transition: 'opacity 0.8s ease-in'
         }}>
@@ -353,8 +352,8 @@ const Ending = () => {
             border: '6px solid #fff',
             padding: '8px',
             backgroundColor: '#000',
-            width: '80%',
-            maxWidth: '900px'
+            width: '85%',
+            maxWidth: '1100px'
           }}>
             <div style={{
               border: '3px solid #888',
@@ -365,7 +364,7 @@ const Ending = () => {
             }}>
               <p style={{
                 color: '#fff',
-                fontSize: 'clamp(24px, 4vw, 48px)',
+                fontSize: 'clamp(40px, 5vw, 80px)',
                 lineHeight: 2,
                 margin: 0,
                 whiteSpace: 'pre-wrap',

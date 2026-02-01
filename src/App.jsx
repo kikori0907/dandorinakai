@@ -190,7 +190,7 @@ const DandoriOpening = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: '"PixelMplus12", "DotGothic16", monospace',
+          fontFamily: '"DotGothic16", monospace',
           cursor: titlePhase === 'visible' ? 'pointer' : 'default',
           overflow: 'hidden',
           position: 'relative'
@@ -232,7 +232,7 @@ const DandoriOpening = () => {
             position: 'absolute',
             bottom: '80px',
             color: '#888',
-            fontSize: 'clamp(14px, 2vw, 24px)',
+            fontSize: 'clamp(24px, 4vw, 40px)',
             letterSpacing: '0.1em',
             animation: 'blink 1.2s infinite'
           }}>
@@ -274,7 +274,7 @@ const DandoriOpening = () => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: '"PixelMplus12", "DotGothic16", monospace',
+      fontFamily: '"DotGothic16", monospace',
       overflow: 'hidden',
       position: 'relative',
       cursor: !document.fullscreenElement ? 'pointer' : 'default'
@@ -282,8 +282,7 @@ const DandoriOpening = () => {
 
       {/* メインコンテナ */}
       <div style={{
-        width: '90%',
-        maxWidth: '1200px',
+        width: '95%',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -297,21 +296,21 @@ const DandoriOpening = () => {
             color: '#fff'
           }}>
             <h1 style={{
-              fontSize: 'clamp(40px, 8vw, 80px)',
+              fontSize: '7vw',
               marginBottom: '30px',
               letterSpacing: '0.15em'
             }}>
               冒険の書
             </h1>
             <h2 style={{
-              fontSize: 'clamp(28px, 5vw, 56px)',
+              fontSize: '5vw',
               marginBottom: '50px',
               letterSpacing: '0.1em'
             }}>
               ダンドリな会
             </h2>
             <p style={{
-              fontSize: 'clamp(18px, 3vw, 32px)',
+              fontSize: '3vw',
               marginBottom: '60px',
               color: '#ccc'
             }}>
@@ -321,7 +320,7 @@ const DandoriOpening = () => {
               onClick={startAnimation}
               style={{
                 padding: '24px 72px',
-                fontSize: 'clamp(24px, 4vw, 40px)',
+                fontSize: '3.5vw',
                 backgroundColor: '#000',
                 color: '#fff',
                 border: '6px solid #fff',
@@ -358,7 +357,7 @@ const DandoriOpening = () => {
               }}>
                 <span style={{
                   color: '#fff',
-                  fontSize: 'clamp(28px, 5vw, 48px)',
+                  fontSize: '5vw',
                   letterSpacing: '0.3em'
                 }}>
                   コマンド
@@ -378,7 +377,7 @@ const DandoriOpening = () => {
                     onClick={() => !commandConfirmed && confirmCommand(index)}
                     style={{
                       color: '#fff',
-                      fontSize: 'clamp(24px, 4vw, 40px)',
+                      fontSize: '4.5vw',
                       cursor: commandConfirmed ? 'default' : 'pointer',
                       display: 'flex',
                       alignItems: 'center',
@@ -391,7 +390,7 @@ const DandoriOpening = () => {
                   >
                     <span style={{
                       opacity: (commandConfirmed && selectedCommand === index) ? 1 : 0,
-                      fontSize: 'clamp(20px, 3.5vw, 36px)'
+                      fontSize: '4vw'
                     }}>
                       ▶
                     </span>
@@ -404,7 +403,7 @@ const DandoriOpening = () => {
             {commandConfirmed && selectedCommand === 0 && (
               <div style={{
                 color: '#fff',
-                fontSize: 'clamp(24px, 4vw, 40px)'
+                fontSize: '4vw'
               }}>
                 いざ、戦いの時！
               </div>
@@ -412,11 +411,12 @@ const DandoriOpening = () => {
 
             {commandConfirmed && selectedCommand !== 0 && (
               <div style={{
-                color: '#fff',
-                fontSize: 'clamp(20px, 3vw, 32px)',
+                fontSize: '4vw',
+                color: '#ff4444',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '24px'
+                gap: '24px',
+                whiteSpace: 'nowrap'
               }}>
                 <span>今は「たたかう」時だ！</span>
                 <button
@@ -424,11 +424,11 @@ const DandoriOpening = () => {
                   style={{
                     padding: '12px 24px',
                     backgroundColor: '#000',
-                    color: '#fff',
-                    border: '4px solid #fff',
+                    color: '#ff4444',
+                    border: '4px solid #ff4444',
                     cursor: 'pointer',
                     fontFamily: 'inherit',
-                    fontSize: 'clamp(18px, 2.5vw, 28px)'
+                    fontSize: '3.5vw'
                   }}
                 >
                   戻る
@@ -461,8 +461,8 @@ const DandoriOpening = () => {
                 <p style={{
                   color: '#fff',
                   fontSize: currentSceneData?.isTitle
-                    ? 'clamp(36px, 7vw, 72px)'
-                    : 'clamp(24px, 5vw, 48px)',
+                    ? '6vw'
+                    : '3.5vw',
                   lineHeight: '2.2',
                   margin: 0,
                   whiteSpace: 'pre-wrap',
