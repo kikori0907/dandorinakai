@@ -52,6 +52,12 @@ const Ending = () => {
   const levelupSERef = useRef(null);
 
   const handleStart = () => {
+    const el = document.documentElement;
+    if (el.requestFullscreen) {
+      el.requestFullscreen().catch(() => {});
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
     if (!bgmRef.current) {
       const audio = new Audio('/ending-bgm.m4a');
       audio.loop = false;

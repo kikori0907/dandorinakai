@@ -250,9 +250,23 @@ const DandoriOpening = () => {
     );
   }
 
+  // 画面クリックで全画面化
+  const goFullscreen = useCallback(() => {
+    if (!document.fullscreenElement) {
+      const el = document.documentElement;
+      if (el.requestFullscreen) {
+        el.requestFullscreen().catch(() => {});
+      } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+      }
+    }
+  }, []);
+
   // ========== メイン画面 ==========
   return (
-    <div style={{
+    <div
+      onClick={goFullscreen}
+      style={{
       width: '100vw',
       height: '100vh',
       backgroundColor: '#000',
@@ -262,7 +276,8 @@ const DandoriOpening = () => {
       justifyContent: 'center',
       fontFamily: '"DotGothic16", monospace',
       overflow: 'hidden',
-      position: 'relative'
+      position: 'relative',
+      cursor: !document.fullscreenElement ? 'pointer' : 'default'
     }}>
 
       {/* メインコンテナ */}
