@@ -68,14 +68,19 @@ const Ending = () => {
     // レベルアップSEをユーザー操作のタイミングで事前ロード＆アンロック
     if (!levelupSERef.current) {
       const se = new Audio('/levelup.m4a');
-      se.volume = 1.0;
+      se.volume = 0;
       levelupSERef.current = se;
     }
-    // 無音再生→即停止でモバイルのオーディオをアンロック
+    // 無音で再生→即停止してモバイルのオーディオをアンロック
+    const origVol = levelupSERef.current.volume;
+    levelupSERef.current.volume = 0;
     levelupSERef.current.play().then(() => {
       levelupSERef.current.pause();
       levelupSERef.current.currentTime = 0;
-    }).catch(() => {});
+      levelupSERef.current.volume = 1.0;
+    }).catch(() => {
+      levelupSERef.current.volume = 1.0;
+    });
     setStarted(true);
     setTimeout(() => setFadeIn(true), 100);
   };
@@ -173,7 +178,7 @@ const Ending = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: '"DotGothic16", monospace',
+        fontFamily: '"PixelMplus12", "DotGothic16", monospace',
         cursor: 'pointer'
       }}
         onClick={handleStart}
@@ -203,7 +208,7 @@ const Ending = () => {
       height: '100vh',
       backgroundColor: '#000',
       display: 'flex',
-      fontFamily: '"DotGothic16", monospace',
+      fontFamily: '"PixelMplus12", "DotGothic16", monospace',
       overflow: 'hidden'
     }}>
 

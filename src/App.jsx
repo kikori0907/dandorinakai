@@ -190,7 +190,7 @@ const DandoriOpening = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: '"DotGothic16", monospace',
+          fontFamily: '"PixelMplus12", "DotGothic16", monospace',
           cursor: titlePhase === 'visible' ? 'pointer' : 'default',
           overflow: 'hidden',
           position: 'relative'
@@ -274,7 +274,7 @@ const DandoriOpening = () => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: '"DotGothic16", monospace',
+      fontFamily: '"PixelMplus12", "DotGothic16", monospace',
       overflow: 'hidden',
       position: 'relative',
       cursor: !document.fullscreenElement ? 'pointer' : 'default'
