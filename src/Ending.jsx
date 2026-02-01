@@ -65,6 +65,17 @@ const Ending = () => {
       bgmRef.current = audio;
     }
     bgmRef.current.play().catch(() => {});
+    // レベルアップSEをユーザー操作のタイミングで事前ロード＆アンロック
+    if (!levelupSERef.current) {
+      const se = new Audio('/levelup.m4a');
+      se.volume = 1.0;
+      levelupSERef.current = se;
+    }
+    // 無音再生→即停止でモバイルのオーディオをアンロック
+    levelupSERef.current.play().then(() => {
+      levelupSERef.current.pause();
+      levelupSERef.current.currentTime = 0;
+    }).catch(() => {});
     setStarted(true);
     setTimeout(() => setFadeIn(true), 100);
   };
