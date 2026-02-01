@@ -11,8 +11,8 @@ const DandoriOpening = () => {
   // BGM
   const bgmRef = useRef(null);
 
-  // タイトル画面の状態
-  const [titlePhase, setTitlePhase] = useState('black'); // 'black' -> 'fadeIn' -> 'visible' -> 'done'
+  // タイトル画面の状態（スキップしてメイン画面を直接表示）
+  const [titlePhase, setTitlePhase] = useState('done');
 
   const [currentScene, setCurrentScene] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
@@ -35,7 +35,7 @@ const DandoriOpening = () => {
       delay: 500
     },
     {
-      text: "13期 第3四半期——\n我らダンドリワークの戦士たちが\n滋賀の地とオンラインに終結する。\n戦力は整った。",
+      text: "13期 第4四半期——\n我らダンドリワークの戦士たちが\n滋賀の地とオンラインに終結する。\n戦力は整った。",
       duration: 9000,
       delay: 500
     },
@@ -119,6 +119,13 @@ const DandoriOpening = () => {
 
   // コマンド画面表示
   const startAnimation = useCallback(() => {
+    // 全画面化を試みる
+    const el = document.documentElement;
+    if (el.requestFullscreen) {
+      el.requestFullscreen().catch(() => {});
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
     setShowCommand(true);
     setSelectedCommand(0);
     setCommandConfirmed(false);
@@ -130,7 +137,7 @@ const DandoriOpening = () => {
     setCommandConfirmed(true);
 
     if (index === 0) {
-      // BGM即再生
+      // BGMを準備（再生はストーリー画面開始時）
       if (!bgmRef.current) {
         const audio = new Audio('/bgm.m4a');
         audio.loop = false;
@@ -141,14 +148,14 @@ const DandoriOpening = () => {
         });
         bgmRef.current = audio;
       }
-      bgmRef.current.play().catch(() => {});
-      // 800ms後に画面遷移
+      // 800ms後に画面遷移＋BGM再生
       setTimeout(() => {
         setShowCommand(false);
         setIsPlaying(true);
         setCurrentScene(0);
         setDisplayedText('');
         setCharIndex(0);
+        bgmRef.current.play().catch(() => {});
       }, 800);
     }
   }, []);
@@ -458,25 +465,7 @@ const DandoriOpening = () => {
               </div>
             </div>
 
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '16px',
-              marginTop: '32px'
-            }}>
-              {scenes.map((_, index) => (
-                <div
-                  key={index}
-                  style={{
-                    width: '20px',
-                    height: '20px',
-                    borderRadius: '50%',
-                    backgroundColor: index <= currentScene ? '#fff' : '#444',
-                    border: '3px solid #fff'
-                  }}
-                />
-              ))}
-            </div>
+            {/* 進捗の丸（●）削除済み */}
 
             {charIndex >= (scenes[currentScene]?.text?.length || 0) &&
              currentScene < totalScenes - 1 && (
@@ -494,35 +483,11 @@ const DandoriOpening = () => {
           </div>
         )}
 
-        {/* 終了画面 */}
-        {isPlaying && currentScene === totalScenes - 1 &&
-         charIndex >= scenes[totalScenes - 1].text.length && (
-          <div style={{
-            position: 'absolute',
-            bottom: '20px',
-            display: 'flex',
-            gap: '20px'
-          }}>
-            <button
-              onClick={resetAnimation}
-              style={{
-                padding: '12px 32px',
-                fontSize: '16px',
-                backgroundColor: 'transparent',
-                color: '#888',
-                border: '2px solid #888',
-                cursor: 'pointer',
-                fontFamily: 'inherit'
-              }}
-            >
-              もう一度
-            </button>
-          </div>
-        )}
+        {/* 終了画面 - 「もう一度」ボタン削除済み */}
       </div>
 
-      {/* プログレスバー */}
-      {isPlaying && (
+      {/* プログレスバー（最後のシーンでは非表示） */}
+      {isPlaying && currentScene < totalScenes - 1 && (
         <div style={{
           position: 'absolute',
           bottom: '40px',
