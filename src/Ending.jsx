@@ -306,27 +306,51 @@ const Ending = () => {
                   ))}
                 </div>
               ))
-            ) : (
-              <>
-                <p style={{
-                  color: '#fff',
-                  fontSize: 'clamp(32px, 5vw, 64px)',
-                  letterSpacing: '0.2em',
-                  marginBottom: '12px'
-                }}>
-                  {staffList[currentGroup].role}
-                </p>
-                {staffList[currentGroup].names.map((name, i) => (
-                  <p key={i} style={{
+            ) : (() => {
+              const names = staffList[currentGroup].names;
+              const twoCol = names.length > 5;
+              const mid = twoCol ? Math.ceil(names.length / 2) : 0;
+              return (
+                <>
+                  <p style={{
                     color: '#fff',
-                    fontSize: 'clamp(36px, 6vw, 72px)',
-                    letterSpacing: '0.15em'
+                    fontSize: 'clamp(32px, 5vw, 64px)',
+                    letterSpacing: '0.2em',
+                    marginBottom: '12px'
                   }}>
-                    {name}
+                    {staffList[currentGroup].role}
                   </p>
-                ))}
-              </>
-            )}
+                  {twoCol ? (
+                    <div style={{
+                      display: 'flex',
+                      gap: '60px',
+                      justifyContent: 'center'
+                    }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+                        {names.slice(0, mid).map((name, i) => (
+                          <p key={i} style={{ color: '#fff', fontSize: 'clamp(32px, 5vw, 64px)', letterSpacing: '0.15em' }}>{name}</p>
+                        ))}
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+                        {names.slice(mid).map((name, i) => (
+                          <p key={i} style={{ color: '#fff', fontSize: 'clamp(32px, 5vw, 64px)', letterSpacing: '0.15em' }}>{name}</p>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    names.map((name, i) => (
+                      <p key={i} style={{
+                        color: '#fff',
+                        fontSize: 'clamp(36px, 6vw, 72px)',
+                        letterSpacing: '0.15em'
+                      }}>
+                        {name}
+                      </p>
+                    ))
+                  )}
+                </>
+              );
+            })()}
           </div>
         )}
 
